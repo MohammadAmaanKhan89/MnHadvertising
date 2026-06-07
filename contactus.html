@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Contact — MNH Advertising</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800;900&family=Open+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+:root{
+  --blue:#2E5CAA; --blue-d:#1e3f7d; --blue-glow:rgba(46,92,170,.18);
+  --orange:#F48C2B; --orange-glow:rgba(244,140,43,.22);
+  --red:#E03A3E;   --red-glow:rgba(224,58,62,.18);
+  --green:#6EC24A; --green-glow:rgba(110,194,74,.18);
+  --bg:#F9F9F9; --white:#fff; --dark:#111722; --mid:#1e2636;
+  --text:#2d3748; --muted:#718096; --border:#DDE3ED;
+  --fh:'Montserrat',sans-serif; --fb:'Open Sans',sans-serif;
+  --rad:14px; --card-shadow:0 20px 60px rgba(46,92,170,.11);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:var(--fb);background:var(--bg);color:var(--text);overflow-x:hidden;}
+
+nav{
+  position:sticky;top:0;z-index:900;
+  height:68px;padding:0 6%;
+  background:var(--white);
+  display:flex;align-items:center;justify-content:space-between;
+  box-shadow:0 1px 0 #edf0f7;
+  transition:box-shadow .3s;
+}
+nav.scrolled{box-shadow:0 4px 28px rgba(0,0,0,.09);}
+.logo{display:flex;align-items:center;gap:11px;text-decoration:none;}
+.logo-img{height:42px;width:auto;display:block;}
+.lm{
+  width:42px;height:42px;border-radius:9px;flex-shrink:0;
+  background:linear-gradient(140deg,var(--blue) 35%,var(--orange));
+  display:flex;align-items:center;justify-content:center;
+  font-family:var(--fh);font-weight:900;color:#fff;font-size:14px;letter-spacing:-.5px;
+  box-shadow:0 4px 12px rgba(46,92,170,.28);
+}
+.lt{line-height:1.15;}
+.lt-name{font-family:var(--fh);font-weight:800;font-size:1rem;color:var(--blue);}
+.lt-name em{color:var(--orange);font-style:normal;}
+.lt-tag{font-size:.58rem;color:#b0b8c9;letter-spacing:2.5px;text-transform:uppercase;font-weight:600;}
+.nav-links{list-style:none;display:flex;align-items:center;gap:32px;}
+.nav-links a{
+  font-family:var(--fh);font-weight:600;font-size:.83rem;
+  text-decoration:none;color:var(--muted);letter-spacing:.3px;
+  position:relative;padding-bottom:3px;transition:color .2s;
+}
+.nav-links a::after{
+  content:'';position:absolute;bottom:0;left:0;height:2px;width:0;
+  background:var(--red);border-radius:2px;transition:width .28s ease;
+}
+.nav-links a:hover{color:var(--red);}
+.nav-links a:hover::after{width:100%;}
+.nav-links a.active{color:var(--blue);}
+.nav-links a.active::after{width:100%;background:var(--orange);}
+.burger{display:none;flex-direction:column;gap:4.5px;cursor:pointer;padding:7px;}
+.burger span{display:block;height:2px;width:22px;background:var(--blue);border-radius:2px;transition:.25s;}
+
+.hero{
+  min-height:340px;
+  background:linear-gradient(145deg,#0a1628 0%,#142d60 55%,#2E5CAA 100%);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  text-align:center;padding:80px 6% 70px;
+  position:relative;overflow:hidden;
+}
+.hero::before,.hero::after{content:'';position:absolute;border-radius:50%;}
+.hero::before{width:520px;height:520px;top:-150px;right:-150px;border:70px solid rgba(244,140,43,.07);}
+.hero::after{width:340px;height:340px;bottom:-120px;left:-100px;border:55px solid rgba(110,194,74,.07);}
+.hero-noise{
+  position:absolute;inset:0;opacity:.025;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size:200px;
+}
+.hero-eyebrow{
+  display:inline-flex;align-items:center;gap:8px;
+  border:1px solid rgba(244,140,43,.35);background:rgba(244,140,43,.1);
+  color:var(--orange);font-family:var(--fh);font-size:.7rem;
+  font-weight:700;letter-spacing:3px;text-transform:uppercase;
+  padding:5px 18px;border-radius:30px;margin-bottom:22px;
+  animation:slideUp .55s .05s both;
+}
+.hero-eyebrow::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--orange);animation:blink 1.5s infinite;}
+.hero h1{
+  font-family:var(--fh);font-weight:900;
+  font-size:clamp(2rem,5.5vw,3.8rem);
+  color:#fff;line-height:1.08;margin-bottom:16px;
+  animation:slideUp .6s .15s both;
+}
+.hero h1 mark{background:none;color:var(--orange);position:relative;}
+.hero h1 mark::after{content:'';position:absolute;bottom:-4px;left:0;width:100%;height:3px;background:linear-gradient(90deg,var(--orange),var(--red));border-radius:3px;}
+.hero p{color:rgba(255,255,255,.65);font-size:1rem;max-width:480px;line-height:1.75;animation:slideUp .65s .28s both;}
+.hero-meta{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-top:30px;animation:slideUp .65s .4s both;}
+.meta-chip{
+  background:rgba(255,255,255,.07);backdrop-filter:blur(6px);
+  border:1px solid rgba(255,255,255,.12);
+  color:rgba(255,255,255,.7);font-size:.75rem;font-weight:600;
+  padding:6px 16px;border-radius:30px;letter-spacing:.4px;
+  display:flex;align-items:center;gap:6px;
+}
+
+.contact-outer{
+  padding:80px 6% 90px;max-width:1160px;margin:0 auto;
+  display:grid;grid-template-columns:1fr 1.65fr;gap:60px;align-items:start;
+}
+.section-label{
+  font-size:.68rem;font-weight:700;letter-spacing:4px;text-transform:uppercase;
+  color:var(--green);margin-bottom:14px;display:flex;align-items:center;gap:8px;
+}
+.section-label::before,.section-label::after{
+  content:'';flex:1;height:1px;background:linear-gradient(90deg,transparent,rgba(110,194,74,.35));max-width:28px;
+}
+.c-left h2{font-family:var(--fh);font-weight:800;font-size:clamp(1.55rem,2.8vw,2.2rem);color:var(--blue);line-height:1.2;margin-bottom:14px;}
+.c-left h2 span{color:var(--orange);}
+.c-left > p{color:var(--muted);line-height:1.8;font-size:.92rem;margin-bottom:38px;max-width:320px;}
+.info-list{display:flex;flex-direction:column;gap:16px;}
+.info-item{
+  display:flex;align-items:flex-start;gap:15px;
+  background:var(--white);border-radius:12px;padding:18px 20px;
+  border:1px solid rgba(46,92,170,.07);box-shadow:0 4px 18px rgba(46,92,170,.06);
+  transition:transform .25s,box-shadow .25s;
+}
+.info-item:hover{transform:translateY(-3px);box-shadow:0 10px 28px rgba(46,92,170,.1);}
+.i-icon{width:42px;height:42px;border-radius:10px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:1.1rem;}
+.i-blue{background:rgba(46,92,170,.1);}
+.i-orange{background:rgba(244,140,43,.12);}
+.i-green{background:rgba(110,194,74,.12);}
+.i-red{background:rgba(224,58,62,.1);}
+.i-text strong{display:block;font-family:var(--fh);font-size:.78rem;font-weight:700;color:var(--blue);letter-spacing:.3px;margin-bottom:3px;}
+.i-text p,.i-text a{font-size:.875rem;color:var(--muted);line-height:1.5;text-decoration:none;transition:color .2s;}
+.i-text a:hover{color:var(--orange);}
+.social-section{margin-top:32px;}
+.social-section p{font-size:.7rem;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:#b0b8c9;margin-bottom:13px;}
+.social-row{display:flex;gap:10px;}
+.s-pill{
+  display:flex;align-items:center;gap:7px;text-decoration:none;
+  padding:8px 16px;border-radius:30px;font-family:var(--fh);font-size:.75rem;font-weight:700;
+  transition:transform .2s,box-shadow .2s;
+}
+.s-pill:hover{transform:translateY(-3px);}
+.sp-fb{background:#1877F2;color:#fff;box-shadow:0 4px 14px rgba(24,119,242,.3);}
+.sp-ig{background:linear-gradient(135deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888);color:#fff;box-shadow:0 4px 14px rgba(220,39,67,.25);}
+.sp-li{background:#0A66C2;color:#fff;box-shadow:0 4px 14px rgba(10,102,194,.3);}
+
+.form-card{
+  background:var(--white);border-radius:22px;padding:48px 46px;
+  position:relative;overflow:hidden;
+  box-shadow:var(--card-shadow);border:1px solid rgba(46,92,170,.06);
+  animation:slideUp .65s .2s both;
+}
+.form-card::before{
+  content:'';position:absolute;top:-60px;right:-60px;
+  width:200px;height:200px;border-radius:50%;
+  background:radial-gradient(circle,rgba(244,140,43,.08),transparent 70%);pointer-events:none;
+}
+.form-card::after{
+  content:'';position:absolute;bottom:-40px;left:-40px;
+  width:140px;height:140px;border-radius:50%;
+  background:radial-gradient(circle,rgba(110,194,74,.07),transparent 70%);pointer-events:none;
+}
+.form-header{margin-bottom:32px;}
+.form-header h3{font-family:var(--fh);font-weight:800;font-size:1.35rem;color:var(--blue);margin-bottom:6px;}
+.form-header p{font-size:.875rem;color:var(--muted);line-height:1.6;}
+.f-row{display:grid;grid-template-columns:1fr 1fr;gap:18px;}
+.field{position:relative;margin-bottom:20px;}
+.field:last-child{margin-bottom:0;}
+.field label{
+  display:flex;align-items:center;gap:4px;
+  font-family:var(--fh);font-size:.72rem;font-weight:700;
+  color:var(--blue);letter-spacing:.5px;text-transform:uppercase;margin-bottom:7px;
+}
+.field label .req{color:var(--orange);}
+.field input,.field textarea{
+  width:100%;padding:12px 16px;border:2px solid var(--border);border-radius:10px;
+  font-family:var(--fb);font-size:.9rem;color:var(--text);background:var(--bg);outline:none;
+  transition:border-color .22s,box-shadow .22s,background .22s;
+}
+.field input::placeholder,.field textarea::placeholder{color:#b0b8c9;}
+.field input:focus,.field textarea:focus{border-color:var(--blue);background:var(--white);box-shadow:0 0 0 4px var(--blue-glow);}
+.field textarea{resize:none;height:130px;line-height:1.65;}
+.field input.err,.field textarea.err,.field select.err{
+  border-color:var(--red)!important;box-shadow:0 0 0 4px var(--red-glow)!important;
+  background:rgba(224,58,62,.03)!important;animation:shake .38s cubic-bezier(.36,.07,.19,.97);
+}
+.err-tip{font-size:.72rem;font-weight:600;color:var(--red);margin-top:5px;display:none;align-items:center;gap:4px;}
+.err-tip.on{display:flex;}
+.err-tip::before{content:'!';width:14px;height:14px;border-radius:50%;background:var(--red);color:#fff;font-size:.6rem;font-weight:900;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.chip-row{display:flex;flex-wrap:wrap;gap:8px;margin-top:2px;}
+.chip{
+  padding:7px 15px;border-radius:8px;border:2px solid var(--border);
+  font-family:var(--fh);font-size:.72rem;font-weight:700;color:var(--muted);
+  cursor:pointer;background:var(--bg);transition:all .2s;user-select:none;
+}
+.chip:hover{border-color:var(--orange);color:var(--orange);}
+.chip.on{background:var(--blue);border-color:var(--blue);color:#fff;box-shadow:0 4px 12px rgba(46,92,170,.2);}
+.chip-error{border-color:var(--red)!important;}
+.chip-wrap.shake{animation:shake .38s cubic-bezier(.36,.07,.19,.97);}
+.f-footer{display:flex;justify-content:space-between;align-items:center;margin-top:6px;}
+.char-c{font-size:.7rem;color:#b0b8c9;}
+.char-c.warn{color:var(--orange);}
+.btn-send{
+  width:100%;margin-top:10px;padding:14px 28px;border:none;border-radius:50px;cursor:pointer;
+  background:var(--orange);color:#fff;font-family:var(--fh);font-weight:700;font-size:.9rem;letter-spacing:.5px;
+  box-shadow:0 6px 22px rgba(244,140,43,.35);display:flex;align-items:center;justify-content:center;gap:10px;
+  position:relative;overflow:hidden;transition:background .25s,transform .2s,box-shadow .25s;
+}
+.btn-send::after{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(90deg,transparent 0%,rgba(255,255,255,.18) 50%,transparent 100%);
+  transform:translateX(-100%);transition:transform .55s;
+}
+.btn-send:hover::after{transform:translateX(100%);}
+.btn-send:hover{background:var(--red);transform:translateY(-2px);box-shadow:0 10px 28px rgba(224,58,62,.38);}
+.btn-send:active{transform:translateY(0);}
+.arrow{font-size:1.1rem;transition:transform .25s;}
+.btn-send:hover .arrow{transform:translateX(5px);}
+.spin{width:18px;height:18px;border-radius:50%;border:2.5px solid rgba(255,255,255,.3);border-top-color:#fff;animation:rot .65s linear infinite;display:none;}
+.btn-send.loading .spin{display:block;}
+.btn-send.loading .btn-label,.btn-send.loading .arrow{display:none;}
+
+.success-state{display:none;flex-direction:column;align-items:center;text-align:center;padding:30px 20px 20px;gap:18px;}
+.success-state.on{display:flex;animation:popUp .55s cubic-bezier(.34,1.56,.64,1) both;}
+.check-wrap{
+  width:96px;height:96px;border-radius:50%;
+  background:linear-gradient(135deg,rgba(110,194,74,.15),rgba(110,194,74,.28));
+  border:3px solid var(--green);display:flex;align-items:center;justify-content:center;
+  box-shadow:0 0 0 12px rgba(110,194,74,.1);
+  animation:scaleIn .5s .05s cubic-bezier(.34,1.56,.64,1) both;
+}
+.check-wrap svg{width:46px;height:46px;}
+.check-wrap svg polyline{stroke:var(--green);stroke-width:3.5;stroke-linecap:round;stroke-linejoin:round;fill:none;stroke-dasharray:65;stroke-dashoffset:65;animation:draw .55s .35s ease forwards;}
+.s-title{font-family:var(--fh);font-weight:900;font-size:1.55rem;color:var(--blue);animation:slideUp .45s .35s both;}
+.s-sub{color:var(--muted);line-height:1.75;font-size:.92rem;max-width:330px;animation:slideUp .45s .45s both;}
+.s-sub strong{color:var(--green);}
+.s-badge{
+  display:inline-block;background:rgba(110,194,74,.1);border:1px solid rgba(110,194,74,.3);
+  color:var(--green);font-family:var(--fh);font-size:.7rem;font-weight:700;letter-spacing:2px;
+  text-transform:uppercase;padding:6px 20px;border-radius:30px;animation:slideUp .45s .52s both;
+}
+.btn-again{
+  font-family:var(--fh);font-weight:700;font-size:.82rem;
+  border:2px solid var(--blue);color:var(--blue);background:transparent;
+  padding:10px 26px;border-radius:30px;cursor:pointer;transition:all .22s;animation:slideUp .45s .6s both;
+}
+.btn-again:hover{background:var(--blue);color:#fff;}
+
+.strip{
+  background:var(--white);border-top:1px solid #edf0f7;
+  padding:28px 6%;display:flex;align-items:center;justify-content:center;gap:10px;flex-wrap:wrap;
+}
+.strip-dot{width:8px;height:8px;border-radius:50%;background:var(--green);box-shadow:0 0 0 3px rgba(110,194,74,.2);}
+.strip p{font-family:var(--fh);font-size:.88rem;font-weight:600;color:var(--muted);}
+.strip p strong{color:var(--green);}
+
+footer{background:var(--dark);padding:68px 6% 28px;}
+.ft-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1.4fr;gap:44px;padding-bottom:48px;border-bottom:1px solid rgba(255,255,255,.06);}
+.ft-brand .flm{width:46px;height:46px;border-radius:10px;background:linear-gradient(140deg,var(--blue),var(--orange));display:flex;align-items:center;justify-content:center;font-family:var(--fh);font-weight:900;color:#fff;font-size:15px;letter-spacing:-.5px;margin-bottom:14px;}
+.ft-logo img{width:46px;height:auto;display:block;margin-bottom:14px;}
+.ft-brand h3{font-family:var(--fh);font-weight:800;color:#fff;font-size:1rem;}
+.ft-brand h3 em{color:var(--orange);font-style:normal;}
+.ft-brand .tagline{font-size:.62rem;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,.28);margin:5px 0 15px;}
+.ft-brand p{font-size:.85rem;color:rgba(255,255,255,.38);line-height:1.8;max-width:250px;}
+.ft-col h4{font-family:var(--fh);font-weight:700;font-size:.85rem;color:#fff;letter-spacing:.3px;margin-bottom:18px;position:relative;}
+.ft-col h4::after{content:'';display:block;width:22px;height:2px;background:var(--orange);margin-top:7px;border-radius:2px;}
+.ft-col ul{list-style:none;display:flex;flex-direction:column;gap:10px;}
+.ft-col ul a{color:rgba(255,255,255,.38);font-size:.85rem;text-decoration:none;transition:color .2s;}
+.ft-col ul a:hover{color:var(--orange);}
+.ft-cinfo{display:flex;gap:11px;margin-bottom:13px;align-items:flex-start;}
+.ft-ci-icon{width:32px;height:32px;border-radius:7px;background:rgba(255,255,255,.05);display:flex;align-items:center;justify-content:center;font-size:.9rem;flex-shrink:0;}
+.ft-ci-text{font-size:.82rem;color:rgba(255,255,255,.38);line-height:1.5;}
+.ft-socials{display:flex;gap:9px;margin-top:16px;}
+.ft-soc{width:34px;height:34px;border-radius:8px;display:flex;align-items:center;justify-content:center;text-decoration:none;font-size:.8rem;font-weight:700;transition:transform .2s;}
+.ft-soc:hover{transform:translateY(-3px);}
+.ft-fb{background:#1877F2;color:#fff;}
+.ft-ig{background:linear-gradient(135deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888);color:#fff;}
+.ft-tw{background:#1DA1F2;color:#fff;}
+.ft-li{background:#0A66C2;color:#fff;}
+.ft-bottom{padding-top:26px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;}
+.ft-bottom p{font-size:.77rem;color:rgba(255,255,255,.22);}
+.ft-bottom p em{color:var(--orange);font-style:normal;}
+
+@keyframes slideUp{from{opacity:0;transform:translateY(26px);}to{opacity:1;transform:translateY(0);}}
+@keyframes popUp{from{opacity:0;transform:scale(.75);}to{opacity:1;transform:scale(1);}}
+@keyframes scaleIn{from{opacity:0;transform:scale(.4);}to{opacity:1;transform:scale(1);}}
+@keyframes draw{to{stroke-dashoffset:0;}}
+@keyframes rot{to{transform:rotate(360deg);}}
+@keyframes blink{0%,100%{opacity:1;}50%{opacity:.3;}}
+@keyframes shake{0%,100%{transform:translateX(0);}15%{transform:translateX(-7px);}30%{transform:translateX(7px);}45%{transform:translateX(-5px);}60%{transform:translateX(5px);}75%{transform:translateX(-3px);}90%{transform:translateX(3px);}}
+
+@media(max-width:940px){
+  .contact-outer{grid-template-columns:1fr;gap:40px;}
+  .ft-grid{grid-template-columns:1fr 1fr;}
+}
+@media(max-width:640px){
+  .nav-links{display:none;position:absolute;top:68px;left:0;right:0;background:var(--white);flex-direction:column;gap:0;box-shadow:0 8px 20px rgba(0,0,0,.09);}
+  .nav-links.open{display:flex;}
+  .nav-links li{border-bottom:1px solid #f2f4f8;}
+  .nav-links a{display:block;padding:13px 6%;}
+  .burger{display:flex;}
+  .form-card{padding:32px 22px;}
+  .f-row{grid-template-columns:1fr;}
+  .ft-grid{grid-template-columns:1fr;}
+  .ft-bottom{flex-direction:column;text-align:center;}
+  .social-row{flex-wrap:wrap;}
+}
+</style>
+</head>
+<body>
+
+<nav id="nav">
+  <a class="logo" href="index.html">
+    <img src="./mnhadvertisinglogo - Copy (2).png" alt="MNH Advertising logo" class="logo-img">
+  </a>
+  <div class="burger" onclick="toggleNav()"><span></span><span></span><span></span></div>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="./index.html">Home</a></li>
+    <li><a href="./about.html">About</a></li>
+    <li><a href="./services.html">Services</a></li>
+    <li><a href="./portfolio.html">Portfolio</a></li>
+    <li><a href="./contactus.html" class="active">Contact</a></li>
+  </ul>
+</nav>
+
+<section class="hero">
+  <div class="hero-noise"></div>
+  <div class="hero-eyebrow">Get In Touch</div>
+  <h1>Contact <mark>Us</mark></h1>
+  <p>Let's bring your ideas to life. Tell us what you're working on and we'll get back to you fast.</p>
+  <div class="hero-meta">
+    <div class="meta-chip">⚡ Fast Response</div>
+    <div class="meta-chip">🤝 Free Consultation</div>
+    <div class="meta-chip">📍 Karachi, Pakistan</div>
+  </div>
+</section>
+
+<div class="contact-outer">
+
+  <div class="c-left">
+    <div class="section-label">Contact Info</div>
+    <h2>We'd Love to <span>Hear From You</span></h2>
+    <p>Reach out through any channel below — or just fill in the form and we'll take it from there.</p>
+    <div class="info-list">
+      <div class="info-item">
+        <div class="i-icon i-orange">✉️</div>
+        <div class="i-text">
+          <strong>Email</strong>
+          <a href="mailto:mnhadvertising@gmail.com">mnhadvertising@gmail.com</a>
+        </div>
+      </div>
+      <div class="info-item">
+        <div class="i-icon i-blue">📞</div>
+        <div class="i-text">
+          <strong>Phone</strong>
+          <a href="tel:+923009283719">0300 9283719</a>
+        </div>
+      </div>
+      <div class="info-item">
+        <div class="i-icon i-green">📍</div>
+        <div class="i-text">
+          <strong>Location</strong>
+          <p>Karachi, Sindh, Pakistan</p>
+        </div>
+      </div>
+      <div class="info-item">
+        <div class="i-icon i-red">🕐</div>
+        <div class="i-text">
+          <strong>Working Hours</strong>
+          <p>Mon – Fri &nbsp;|&nbsp; 9 AM – 6 PM PKT</p>
+        </div>
+      </div>
+    </div>
+    <div class="social-section">
+      <p>Follow Us</p>
+      <div class="social-row">
+        <a href="#" class="s-pill sp-fb">f Facebook</a>
+        <a href="#" class="s-pill sp-ig">◈ Instagram</a>
+        <a href="#" class="s-pill sp-li">in LinkedIn</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-card" id="formCard">
+
+    <div id="formBody">
+      <div class="form-header">
+        <h3>Send Us a Message</h3>
+        <p>All fields marked <span style="color:var(--orange);font-weight:700;">*</span> are required.</p>
+      </div>
+
+      <!-- ✅ Formspree action + method added -->
+      <form id="cf" action="https://formspree.io/f/mlgkjrzb" method="POST" novalidate>
+
+        <div class="f-row">
+          <div class="field">
+            <label>Full Name <span class="req">*</span></label>
+            <!-- ✅ name="full_name" added -->
+            <input type="text" id="fn" name="full_name" placeholder="Ali Hassan" autocomplete="name"/>
+            <div class="err-tip" id="en">Please enter your full name.</div>
+          </div>
+          <div class="field">
+            <label>Email Address <span class="req">*</span></label>
+            <!-- ✅ name="email" added -->
+            <input type="email" id="fe" name="email" placeholder="you@example.com" autocomplete="email"/>
+            <div class="err-tip" id="ee">Please enter a valid email address.</div>
+          </div>
+        </div>
+
+        <div class="field">
+          <label>Phone <span style="color:var(--muted);font-weight:500;text-transform:none;font-size:.7rem;">(optional)</span></label>
+          <!-- ✅ name="phone" added -->
+          <input type="tel" id="fp" name="phone" placeholder="0300 9283719" autocomplete="tel"/>
+        </div>
+
+        <div class="field">
+          <label>Subject <span class="req">*</span></label>
+          <div class="chip-wrap" id="chipWrap">
+            <div class="chip-row">
+              <div class="chip" data-v="Branding">🎨 Branding</div>
+              <div class="chip" data-v="Social Media">📱 Social Media</div>
+              <div class="chip" data-v="Digital Ads">📢 Digital Ads</div>
+              <div class="chip" data-v="Design">✏️ Design</div>
+              <div class="chip" data-v="Strategy">🎯 Strategy</div>
+              <div class="chip" data-v="Other">💬 Other</div>
+            </div>
+          </div>
+          <!-- ✅ name="subject" added -->
+          <input type="hidden" id="fs" name="subject"/>
+          <div class="err-tip" id="es">Please select a subject.</div>
+        </div>
+
+        <div class="field">
+          <label>Message <span class="req">*</span></label>
+          <!-- ✅ name="message" added -->
+          <textarea id="fm" name="message" maxlength="600" placeholder="Tell us about your project or ask a question…" oninput="countChars(this)"></textarea>
+          <div class="f-footer">
+            <div class="err-tip" id="em" style="margin:0;">Please write at least 10 characters.</div>
+            <span class="char-c" id="cc">0 / 600</span>
+          </div>
+        </div>
+
+        <button type="submit" class="btn-send" id="bsend">
+          <span class="btn-label">Send Message</span>
+          <span class="arrow">→</span>
+          <span class="spin"></span>
+        </button>
+      </form>
+    </div>
+
+    <div class="success-state" id="successBox">
+      <div class="check-wrap">
+        <svg viewBox="0 0 52 52"><polyline points="14,27 22,36 38,18"/></svg>
+      </div>
+      <div class="s-title">Message Sent! 🎉</div>
+      <div class="s-sub">Thanks for reaching out — we'll get back to you <strong>within 24 hours.</strong></div>
+      <div class="s-badge">✓ Confirmed</div>
+      <button class="btn-again" onclick="resetForm()">Send Another Message</button>
+    </div>
+
+  </div>
+</div>
+
+<div class="strip">
+  <div class="strip-dot"></div>
+  <p>We usually respond <strong>within 24 hours</strong> — often much faster.</p>
+</div>
+
+<footer>
+  <div class="ft-grid">
+    <div class="ft-brand">
+      <a href="index.html" class="ft-logo"><img src="./mnhadvertisinglogo - Copy (2).png" alt="MNH Advertising logo"></a>
+      <h3>MNH <em>Advertising</em></h3>
+      <div class="tagline">Renovating Thoughts.</div>
+      <p>A creative force dedicated to building brands that resonate, campaigns that convert, and stories that last.</p>
+      <div class="ft-socials">
+        <a href="#" class="ft-soc ft-fb">f</a>
+        <a href="#" class="ft-soc ft-ig">◈</a>
+        <a href="#" class="ft-soc ft-tw">✕</a>
+        <a href="#" class="ft-soc ft-li">in</a>
+      </div>
+    </div>
+    <div class="ft-col">
+      <h4>Navigation</h4>
+      <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="#">About</a></li>
+        <li><a href="#">Services</a></li>
+        <li><a href="#">Portfolio</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+    </div>
+    <div class="ft-col">
+      <h4>Services</h4>
+      <ul>
+        <li><a href="#">Brand Strategy</a></li>
+        <li><a href="#">Social Media</a></li>
+        <li><a href="#">Digital Ads</a></li>
+        <li><a href="#">Print & OOH</a></li>
+        <li><a href="#">Content Creation</a></li>
+      </ul>
+    </div>
+    <div class="ft-col">
+      <h4>Reach Us</h4>
+      <div class="ft-cinfo">
+        <div class="ft-ci-icon">📍</div>
+        <div class="ft-ci-text">Karachi, Sindh, Pakistan</div>
+      </div>
+      <div class="ft-cinfo">
+        <div class="ft-ci-icon">✉️</div>
+        <div class="ft-ci-text">mnhadvertising@gmail.com</div>
+      </div>
+      <div class="ft-cinfo">
+        <div class="ft-ci-icon">📞</div>
+        <div class="ft-ci-text">0300 9283719</div>
+      </div>
+    </div>
+  </div>
+  <div class="ft-bottom">
+    <p>© 2024 <em>MNH Advertising</em>. All rights reserved.</p>
+    <p>Crafted with ❤️ by <em>MNH Creative Team</em></p>
+  </div>
+</footer>
+
+<script>
+/* nav */
+function toggleNav(){document.getElementById('navLinks').classList.toggle('open');}
+window.addEventListener('scroll',()=>{
+  document.getElementById('nav').classList.toggle('scrolled',scrollY>10);
+});
+
+/* char counter */
+function countChars(el){
+  const n=el.value.length;
+  const cc=document.getElementById('cc');
+  cc.textContent=n+' / 600';
+  cc.classList.toggle('warn',n>480);
+}
+
+/* subject chips */
+const chips=document.querySelectorAll('.chip');
+chips.forEach(c=>c.addEventListener('click',()=>{
+  chips.forEach(x=>x.classList.remove('on'));
+  c.classList.add('on');
+  document.getElementById('fs').value=c.dataset.v;
+  document.getElementById('chipWrap').querySelectorAll('.chip').forEach(x=>x.classList.remove('chip-error'));
+  document.getElementById('es').classList.remove('on');
+}));
+
+/* validation helpers */
+function isEmail(v){return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);}
+function markErr(elId,tipId,cond){
+  const el=document.getElementById(elId);
+  const tip=document.getElementById(tipId);
+  if(cond){
+    el.classList.add('err');tip.classList.add('on');
+    el.style.animation='none';el.offsetHeight;el.style.animation='';
+    return false;
+  } else {
+    el.classList.remove('err');tip.classList.remove('on');return true;
+  }
+}
+function clearErrOnInput(elId,tipId){
+  const el=document.getElementById(elId);
+  el.addEventListener('input',()=>{
+    el.classList.remove('err');
+    document.getElementById(tipId).classList.remove('on');
+  });
+}
+['fn','fm'].forEach((id,i)=>clearErrOnInput(id,['en','em'][i]));
+document.getElementById('fe').addEventListener('input',()=>{
+  document.getElementById('fe').classList.remove('err');
+  document.getElementById('ee').classList.remove('on');
+});
+
+/* ✅ submit — sends to Formspree via fetch */
+document.getElementById('cf').addEventListener('submit',function(e){
+  e.preventDefault();
+  const name=document.getElementById('fn').value.trim();
+  const email=document.getElementById('fe').value.trim();
+  const subj=document.getElementById('fs').value;
+  const msg=document.getElementById('fm').value.trim();
+
+  const v1=markErr('fn','en',!name);
+  const v2=markErr('fe','ee',!isEmail(email));
+
+  const chipWrap=document.getElementById('chipWrap');
+  let v3=true;
+  if(!subj){
+    v3=false;
+    chips.forEach(x=>x.classList.add('chip-error'));
+    chipWrap.classList.remove('shake');chipWrap.offsetHeight;chipWrap.classList.add('shake');
+    document.getElementById('es').classList.add('on');
+    setTimeout(()=>chipWrap.classList.remove('shake'),500);
+  }
+
+  const v4=markErr('fm','em',msg.length<10);
+  if(!(v1&&v2&&v3&&v4)) return;
+
+  const btn=document.getElementById('bsend');
+  btn.classList.add('loading');btn.disabled=true;
+
+  const formData=new FormData(document.getElementById('cf'));
+
+  fetch('https://formspree.io/f/mlgkjrzb',{
+    method:'POST',
+    body:formData,
+    headers:{Accept:'application/json'}
+  })
+  .then(res=>{
+    btn.classList.remove('loading');btn.disabled=false;
+    if(res.ok){
+      document.getElementById('formBody').style.cssText='opacity:0;transform:scale(.95);transition:all .3s;pointer-events:none;';
+      setTimeout(()=>{
+        document.getElementById('formBody').style.display='none';
+        document.getElementById('successBox').classList.add('on');
+      },300);
+    } else {
+      alert('Something went wrong. Please try again or email us directly at mnhadvertising@gmail.com');
+    }
+  })
+  .catch(()=>{
+    btn.classList.remove('loading');btn.disabled=false;
+    alert('Network error. Please check your connection and try again.');
+  });
+});
+
+/* reset */
+function resetForm(){
+  document.getElementById('cf').reset();
+  document.getElementById('cc').textContent='0 / 600';
+  chips.forEach(c=>c.classList.remove('on','chip-error'));
+  document.getElementById('fs').value='';
+  ['fn','fe','fm'].forEach(id=>document.getElementById(id).classList.remove('err'));
+  ['en','ee','em','es'].forEach(id=>document.getElementById(id).classList.remove('on'));
+  const sb=document.getElementById('successBox');
+  sb.classList.remove('on');sb.style.display='';
+  const fb=document.getElementById('formBody');
+  fb.style.display='block';fb.style.cssText='';
+}
+</script>
+</body>
+</html>
