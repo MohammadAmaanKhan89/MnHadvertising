@@ -1,0 +1,772 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Portfolio — MNH Advertising</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&family=Open+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+  :root {
+    --blue:   #2E5CAA;
+    --orange: #F48C2B;
+    --red:    #E03A3E;
+    --green:  #6EC24A;
+    --white:  #FFFFFF;
+    --light:  #F9F9F9;
+    --dark:   #141820;
+    --mid:    #2a2f3d;
+    --card-bg:#FFFFFF;
+    --shadow: 0 8px 40px rgba(46,92,170,.10);
+    --radius: 16px;
+    --font-head: 'Montserrat', sans-serif;
+    --font-body: 'Open Sans', sans-serif;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--font-body);
+    background: var(--light);
+    color: #333;
+    overflow-x: hidden;
+  }
+
+  /* ─── NAVBAR ─── */
+  nav {
+    position: sticky; top: 0; z-index: 999;
+    background: var(--white);
+    box-shadow: 0 2px 20px rgba(0,0,0,.08);
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 5%;
+    height: 70px;
+  }
+  .logo {
+    display: flex; align-items: center; gap: 12px; text-decoration: none;
+  }
+  .logo-img { height: 42px; width: auto; display: block; }
+  .logo-mark {
+    width: 44px; height: 44px; border-radius: 10px;
+    background: linear-gradient(135deg, var(--blue) 40%, var(--orange) 100%);
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--font-head); font-weight: 900; color: #fff;
+    font-size: 16px; letter-spacing: -1px;
+    box-shadow: 0 4px 12px rgba(46,92,170,.3);
+  }
+  .logo-text { font-family: var(--font-head); font-weight: 800; font-size: 1.1rem; color: var(--blue); line-height: 1.1; }
+  .logo-text span { color: var(--orange); }
+  .logo-sub { font-size: .62rem; color: #888; font-weight: 500; letter-spacing: 2px; text-transform: uppercase; }
+
+  .nav-links { display: flex; gap: 36px; list-style: none; align-items: center; }
+  .nav-links a {
+    text-decoration: none; font-family: var(--font-head); font-weight: 600;
+    font-size: .875rem; color: #444; letter-spacing: .5px;
+    position: relative; padding-bottom: 4px;
+    transition: color .25s;
+  }
+  .nav-links a::after {
+    content: ''; position: absolute; bottom: 0; left: 0;
+    width: 0; height: 2px; background: var(--red);
+    transition: width .3s cubic-bezier(.4,0,.2,1);
+  }
+  .nav-links a:hover { color: var(--red); }
+  .nav-links a:hover::after { width: 100%; }
+  .nav-links a.active { color: var(--blue); }
+  .nav-links a.active::after { width: 100%; background: var(--orange); }
+
+  .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 8px; }
+  .hamburger span { display: block; width: 24px; height: 2px; background: var(--blue); border-radius: 2px; transition: .3s; }
+
+  /* ─── HERO ─── */
+  .hero {
+    background: linear-gradient(135deg, #0f1b35 0%, #1d3a72 50%, #2E5CAA 100%);
+    padding: 110px 5% 100px;
+    position: relative; overflow: hidden; text-align: center;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse at 70% 50%, rgba(244,140,43,.13) 0%, transparent 60%),
+                radial-gradient(ellipse at 20% 80%, rgba(110,194,74,.08) 0%, transparent 50%);
+  }
+  .hero-geo {
+    position: absolute; top: -60px; right: -60px;
+    width: 420px; height: 420px; border-radius: 50%;
+    border: 60px solid rgba(244,140,43,.08);
+  }
+  .hero-geo2 {
+    position: absolute; bottom: -80px; left: -80px;
+    width: 320px; height: 320px; border-radius: 50%;
+    border: 50px solid rgba(110,194,74,.07);
+  }
+  .hero-badge {
+    display: inline-block; margin-bottom: 20px;
+    background: rgba(244,140,43,.18); border: 1px solid rgba(244,140,43,.4);
+    color: var(--orange); font-size: .75rem; font-weight: 700;
+    letter-spacing: 3px; text-transform: uppercase;
+    padding: 6px 18px; border-radius: 30px;
+    animation: fadeUp .6s .1s both;
+  }
+  .hero h1 {
+    font-family: var(--font-head); font-weight: 900; font-size: clamp(2.4rem, 6vw, 4.2rem);
+    color: #fff; line-height: 1.1; margin-bottom: 20px;
+    animation: fadeUp .7s .2s both;
+  }
+  .hero h1 em { color: var(--orange); font-style: normal; }
+  .hero p {
+    font-size: 1.1rem; color: rgba(255,255,255,.75); max-width: 560px;
+    margin: 0 auto 14px; line-height: 1.7;
+    animation: fadeUp .7s .35s both;
+  }
+  .hero-scroll {
+    margin-top: 50px; display: flex; flex-direction: column; align-items: center; gap: 8px;
+    animation: fadeUp .7s .55s both;
+  }
+  .hero-scroll span { font-size: .75rem; color: rgba(255,255,255,.45); letter-spacing: 2px; text-transform: uppercase; }
+  .scroll-dot {
+    width: 20px; height: 34px; border: 2px solid rgba(255,255,255,.3);
+    border-radius: 12px; display: flex; justify-content: center; padding-top: 6px;
+  }
+  .scroll-dot::after {
+    content: ''; width: 4px; height: 8px; background: var(--orange); border-radius: 2px;
+    animation: scrollBounce 1.4s infinite;
+  }
+
+  /* ─── SECTION WRAPPER ─── */
+  .section { padding: 90px 5%; }
+  .section-head { text-align: center; margin-bottom: 60px; }
+  .section-label {
+    font-size: .72rem; font-weight: 700; letter-spacing: 4px; text-transform: uppercase;
+    color: var(--green); margin-bottom: 12px;
+  }
+  .section-label::before { content: '— '; }
+  .section-label::after  { content: ' —'; }
+  .section-head h2 {
+    font-family: var(--font-head); font-weight: 800; font-size: clamp(1.8rem, 4vw, 2.8rem);
+    color: var(--blue); line-height: 1.2;
+  }
+  .section-head h2 span { color: var(--orange); }
+  .section-head p { margin-top: 14px; color: #666; max-width: 500px; margin-left: auto; margin-right: auto; line-height: 1.7; }
+
+  /* ─── FILTER TABS ─── */
+  .filter-bar {
+    display: flex; flex-wrap: wrap; gap: 10px;
+    justify-content: center; margin-bottom: 50px;
+  }
+  .filter-btn {
+    border: 2px solid #ddd; background: var(--white);
+    color: #555; padding: 9px 22px; border-radius: 30px;
+    font-family: var(--font-head); font-weight: 600; font-size: .82rem;
+    letter-spacing: .5px; cursor: pointer;
+    transition: all .25s cubic-bezier(.4,0,.2,1);
+  }
+  .filter-btn:hover { border-color: var(--orange); color: var(--orange); }
+  .filter-btn.active {
+    background: var(--blue); border-color: var(--blue);
+    color: #fff; box-shadow: 0 4px 16px rgba(46,92,170,.25);
+  }
+
+  /* ─── PORTFOLIO GRID ─── */
+  .portfolio-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+  }
+
+  .card {
+    border-radius: var(--radius); overflow: hidden;
+    background: var(--card-bg);
+    box-shadow: var(--shadow);
+    cursor: pointer;
+    transition: transform .35s cubic-bezier(.4,0,.2,1), box-shadow .35s;
+    opacity: 0; transform: translateY(40px);
+    position: relative;
+  }
+  .card.visible { animation: cardReveal .55s forwards; }
+  .card:hover { transform: translateY(-6px); box-shadow: 0 20px 60px rgba(46,92,170,.18); }
+
+  .card-img {
+    position: relative; overflow: hidden;
+    aspect-ratio: 4/3;
+  }
+  .card-img img {
+    width: 100%; height: 100%; object-fit: cover;
+    transition: transform .5s cubic-bezier(.4,0,.2,1);
+  }
+  .card:hover .card-img img { transform: scale(1.08); }
+
+  .card-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(to top, rgba(224,58,62,.92) 0%, rgba(20,24,32,.6) 100%);
+    opacity: 0; transition: opacity .35s;
+    display: flex; flex-direction: column;
+    justify-content: flex-end; padding: 26px;
+  }
+  .card:hover .card-overlay { opacity: 1; }
+  .overlay-title {
+    font-family: var(--font-head); font-weight: 700; font-size: 1.1rem;
+    color: #fff; transform: translateY(16px);
+    transition: transform .35s .05s cubic-bezier(.4,0,.2,1);
+    opacity: 0;
+  }
+  .card:hover .overlay-title { transform: translateY(0); opacity: 1; }
+  .overlay-cat {
+    font-size: .75rem; color: rgba(255,255,255,.8); letter-spacing: 2px;
+    text-transform: uppercase; margin-top: 6px;
+    transform: translateY(16px); transition: transform .35s .1s cubic-bezier(.4,0,.2,1);
+    opacity: 0;
+  }
+  .card:hover .overlay-cat { transform: translateY(0); opacity: 1; }
+  .overlay-arrow {
+    position: absolute; top: 20px; right: 20px;
+    width: 36px; height: 36px; border-radius: 50%;
+    background: var(--orange); display: flex; align-items: center; justify-content: center;
+    font-size: 1.1rem; color: #fff;
+    transform: scale(0); transition: transform .3s .1s;
+  }
+  .card:hover .overlay-arrow { transform: scale(1); }
+
+  .card-body { padding: 20px 22px 22px; }
+  .card-cat {
+    font-size: .7rem; font-weight: 700; letter-spacing: 2.5px;
+    text-transform: uppercase; color: var(--green); margin-bottom: 8px;
+  }
+  .card-title {
+    font-family: var(--font-head); font-weight: 700; font-size: 1rem;
+    color: var(--blue); line-height: 1.3;
+  }
+  .card-tag {
+    display: inline-block; margin-top: 12px;
+    background: #f0f5ff; color: var(--blue);
+    font-size: .68rem; font-weight: 600; letter-spacing: 1px;
+    text-transform: uppercase; padding: 4px 12px; border-radius: 20px;
+  }
+
+  /* hidden for filter */
+  .card.hidden { display: none; }
+
+  /* ─── FEATURED ─── */
+  .featured-section {
+    background: linear-gradient(135deg, #0f1b35 0%, #1d3a72 100%);
+    padding: 90px 5%; position: relative; overflow: hidden;
+  }
+  .featured-section::before {
+    content: ''; position: absolute;
+    top: -80px; right: -80px;
+    width: 400px; height: 400px; border-radius: 50%;
+    border: 70px solid rgba(244,140,43,.07);
+  }
+  .featured-inner {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 70px; align-items: center;
+    max-width: 1100px; margin: 0 auto;
+  }
+  .featured-img {
+    border-radius: 18px; overflow: hidden;
+    box-shadow: 0 30px 80px rgba(0,0,0,.4);
+    position: relative;
+  }
+  .featured-img img { width: 100%; display: block; }
+  .feat-badge {
+    position: absolute; top: 20px; left: 20px;
+    background: var(--orange); color: #fff;
+    font-family: var(--font-head); font-size: .72rem; font-weight: 700;
+    letter-spacing: 2px; text-transform: uppercase;
+    padding: 6px 16px; border-radius: 20px;
+  }
+  .featured-content .sec-label {
+    font-size: .72rem; font-weight: 700; letter-spacing: 4px;
+    text-transform: uppercase; color: var(--orange); margin-bottom: 14px;
+  }
+  .featured-content h2 {
+    font-family: var(--font-head); font-weight: 900;
+    font-size: clamp(1.6rem, 3vw, 2.4rem); color: #fff;
+    line-height: 1.2; margin-bottom: 18px;
+  }
+  .featured-content p { color: rgba(255,255,255,.7); line-height: 1.8; margin-bottom: 36px; }
+
+  .stats-row { display: flex; gap: 36px; margin-bottom: 36px; }
+  .stat { text-align: center; }
+  .stat-num {
+    font-family: var(--font-head); font-weight: 900; font-size: 2rem;
+    color: var(--orange); line-height: 1;
+  }
+  .stat-lbl { font-size: .72rem; color: rgba(255,255,255,.55); letter-spacing: 1.5px; text-transform: uppercase; margin-top: 4px; }
+
+  /* ─── CTA ─── */
+  .cta-section {
+    padding: 100px 5%; text-align: center;
+    background: var(--white);
+  }
+  .cta-box {
+    max-width: 680px; margin: 0 auto;
+    background: linear-gradient(135deg, var(--blue) 0%, #1a3f80 100%);
+    border-radius: 24px; padding: 70px 50px;
+    position: relative; overflow: hidden;
+    box-shadow: 0 20px 60px rgba(46,92,170,.25);
+  }
+  .cta-box::before {
+    content: ''; position: absolute;
+    top: -60px; right: -60px;
+    width: 240px; height: 240px; border-radius: 50%;
+    background: rgba(244,140,43,.12);
+  }
+  .cta-box::after {
+    content: ''; position: absolute;
+    bottom: -40px; left: -40px;
+    width: 160px; height: 160px; border-radius: 50%;
+    background: rgba(110,194,74,.1);
+  }
+  .cta-box h2 {
+    font-family: var(--font-head); font-weight: 900;
+    font-size: clamp(1.6rem, 3vw, 2.2rem); color: #fff;
+    margin-bottom: 14px; position: relative; z-index: 1;
+  }
+  .cta-box p { color: rgba(255,255,255,.7); margin-bottom: 36px; font-size: 1rem; line-height: 1.7; position: relative; z-index:1; }
+
+  .btn-primary {
+    display: inline-block; position: relative; z-index: 1;
+    background: var(--orange); color: #fff;
+    font-family: var(--font-head); font-weight: 700; font-size: .9rem;
+    letter-spacing: .5px; text-decoration: none;
+    padding: 16px 42px; border-radius: 50px; border: none; cursor: pointer;
+    box-shadow: 0 6px 24px rgba(244,140,43,.4);
+    transition: background .25s, transform .25s, box-shadow .25s;
+  }
+  .btn-primary:hover {
+    background: var(--red);
+    transform: scale(1.06);
+    box-shadow: 0 10px 30px rgba(224,58,62,.45);
+  }
+  .btn-pulse { animation: pulse 2.2s infinite; }
+
+  /* ─── FOOTER ─── */
+  footer {
+    background: var(--dark);
+    padding: 70px 5% 30px;
+  }
+  .footer-grid {
+    display: grid; grid-template-columns: 2fr 1fr 1fr 1.5fr;
+    gap: 48px; padding-bottom: 50px;
+    border-bottom: 1px solid rgba(255,255,255,.07);
+  }
+  .footer-brand .logo-mark { margin-bottom: 16px; width: 48px; height: 48px; font-size: 18px; }
+  .footer-logo img { width: 48px; height: auto; display: block; margin-bottom: 16px; }
+  .footer-brand h3 { font-family: var(--font-head); font-weight: 800; color: #fff; font-size: 1.1rem; }
+  .footer-brand h3 span { color: var(--orange); }
+  .footer-brand .tagline { color: rgba(255,255,255,.4); font-size: .82rem; letter-spacing: 2px; text-transform: uppercase; margin: 6px 0 18px; }
+  .footer-brand p { color: rgba(255,255,255,.5); font-size: .88rem; line-height: 1.8; max-width: 280px; }
+
+  .footer-col h4 { font-family: var(--font-head); font-weight: 700; color: #fff; font-size: .9rem; letter-spacing: .5px; margin-bottom: 22px; position: relative; }
+  .footer-col h4::after { content: ''; display: block; width: 28px; height: 2px; background: var(--orange); margin-top: 8px; }
+  .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+  .footer-col ul a { color: rgba(255,255,255,.5); text-decoration: none; font-size: .87rem; transition: color .2s; }
+  .footer-col ul a:hover { color: var(--orange); }
+
+  .footer-col .contact-item { display: flex; gap: 12px; margin-bottom: 14px; align-items: flex-start; }
+  .contact-icon { width: 34px; height: 34px; border-radius: 8px; background: rgba(255,255,255,.06); display: flex; align-items: center; justify-content: center; font-size: 1rem; flex-shrink: 0; }
+  .contact-text { font-size: .82rem; color: rgba(255,255,255,.5); line-height: 1.5; }
+
+  .socials { display: flex; gap: 12px; margin-top: 24px; }
+  .social-btn {
+    width: 38px; height: 38px; border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1rem; text-decoration: none;
+    transition: transform .2s, background .2s;
+  }
+  .social-btn:hover { transform: translateY(-3px); }
+  .s-fb  { background: #1877F2; color: #fff; }
+  .s-ig  { background: linear-gradient(135deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888); color: #fff; }
+  .s-tw  { background: #1DA1F2; color: #fff; }
+  .s-li  { background: #0A66C2; color: #fff; }
+
+  .footer-bottom {
+    padding-top: 28px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px;
+  }
+  .footer-bottom p { font-size: .8rem; color: rgba(255,255,255,.3); }
+  .footer-bottom span { color: var(--orange); }
+
+  /* ─── KEYFRAMES ─── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes cardReveal {
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes scrollBounce {
+    0%,100% { transform: translateY(0); opacity:1; }
+    50%      { transform: translateY(8px); opacity:.4; }
+  }
+  @keyframes pulse {
+    0%,100% { box-shadow: 0 6px 24px rgba(244,140,43,.4); }
+    50%      { box-shadow: 0 6px 40px rgba(244,140,43,.7), 0 0 0 10px rgba(244,140,43,.1); }
+  }
+
+  /* ─── MOBILE ─── */
+  @media(max-width: 900px) {
+    .portfolio-grid { grid-template-columns: repeat(2,1fr); }
+    .featured-inner { grid-template-columns: 1fr; gap: 36px; }
+    .footer-grid { grid-template-columns: 1fr 1fr; }
+  }
+  @media(max-width: 640px) {
+    .nav-links { display: none; position: absolute; top: 70px; left: 0; right: 0; background: #fff; flex-direction: column; gap: 0; box-shadow: 0 8px 20px rgba(0,0,0,.1); }
+    .nav-links.open { display: flex; }
+    .nav-links li { border-bottom: 1px solid #f0f0f0; }
+    .nav-links a { display: block; padding: 14px 5%; }
+    .hamburger { display: flex; }
+    .portfolio-grid { grid-template-columns: 1fr; }
+    .stats-row { gap: 20px; }
+    .cta-box { padding: 50px 28px; }
+    .footer-grid { grid-template-columns: 1fr; }
+    .footer-bottom { flex-direction: column; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ═══════════ NAVBAR ═══════════ -->
+<nav id="navbar">
+  <a href="index.html" class="logo">
+    <img src="./mnhadvertisinglogo - Copy (2).png" alt="MNH Advertising logo" class="logo-img">
+  </a>
+  <div class="hamburger" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </div>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="./index.html">Home</a></li>
+    <li><a href="./about.html">About</a></li>
+    <li><a href="./services.html">Services</a></li>
+    <li><a href="./portfolio.html" class="active">Portfolio</a></li>
+    <li><a href="./contactus.html">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- ═══════════ HERO ═══════════ -->
+<section class="hero">
+  <div class="hero-geo"></div>
+  <div class="hero-geo2"></div>
+  <div class="hero-badge">Creative Excellence</div>
+  <h1>Our <em>Portfolio</em></h1>
+  <p>Showcasing our creative work and successful campaigns — built to elevate brands and move audiences.</p>
+  <div class="hero-scroll">
+    <span>Explore Work</span>
+    <div class="scroll-dot"></div>
+  </div>
+</section>
+
+<!-- ═══════════ PORTFOLIO ═══════════ -->
+<section class="section" id="portfolio">
+  <div class="section-head">
+    <div class="section-label">Our Work</div>
+    <h2>Creative <span>Campaigns</span> That Convert</h2>
+    <p>From bold brand identities to high-impact digital campaigns, every project is crafted with purpose.</p>
+  </div>
+
+  <!-- Filter Tabs -->
+  <div class="filter-bar">
+    <button class="filter-btn active" data-filter="all">All</button>
+    <button class="filter-btn" data-filter="social">Social Media</button>
+    <button class="filter-btn" data-filter="branding">Branding</button>
+    <button class="filter-btn" data-filter="ads">Ads</button>
+    <button class="filter-btn" data-filter="design">Design</button>
+  </div>
+
+  <!-- Grid -->
+  <div class="portfolio-grid" id="portfolioGrid">
+
+    <!-- Card 1 -->
+    <div class="card" data-cat="social">
+      <div class="card-img">
+        <img src="https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?w=600&q=80" alt="Social Media Campaign" loading="lazy"/>
+        <div class="card-overlay">
+          <div class="overlay-arrow">↗</div>
+          <div class="overlay-title">Viral Social Campaign</div>
+          <div class="overlay-cat">Social Media</div>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="card-cat">Social Media</div>
+        <div class="card-title">Viral Social Media Campaign — TechBrand 2024</div>
+        <span class="card-tag">+280% Reach</span>
+      </div>
+    </div>
+
+    <!-- Card 2 -->
+    <div class="card" data-cat="branding">
+      <div class="card-img">
+        <img src="https://images.unsplash.com/photo-1634942537034-2531766767d1?w=600&q=80" alt="Brand Identity" loading="lazy"/>
+        <div class="card-overlay">
+          <div class="overlay-arrow">↗</div>
+          <div class="overlay-title">Luxe Brand Identity</div>
+          <div class="overlay-cat">Branding</div>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="card-cat">Branding</div>
+        <div class="card-title">Luxe Brand Identity & Style Guide</div>
+        <span class="card-tag">Full Identity</span>
+      </div>
+    </div>
+
+    <!-- Card 3 -->
+    <div class="card" data-cat="ads">
+      <div class="card-img">
+        <img src="https://images.unsplash.com/photo-1543269865-cbf427effbad?w=600&q=80" alt="Digital Ad Campaign" loading="lazy"/>
+        <div class="card-overlay">
+          <div class="overlay-arrow">↗</div>
+          <div class="overlay-title">Digital Ad Campaign</div>
+          <div class="overlay-cat">Advertising</div>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="card-cat">Ads</div>
+        <div class="card-title">Multi-Platform Digital Ad Campaign</div>
+        <span class="card-tag">3× ROAS</span>
+      </div>
+    </div>
+
+    <!-- Card 4 -->
+    <div class="card" data-cat="design">
+      <div class="card-img">
+        <img src="https://images.unsplash.com/photo-1558655146-d09347e92766?w=600&q=80" alt="UI Design" loading="lazy"/>
+        <div class="card-overlay">
+          <div class="overlay-arrow">↗</div>
+          <div class="overlay-title">Product Landing Page</div>
+          <div class="overlay-cat">Design</div>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="card-cat">Design</div>
+        <div class="card-title">Product Launch Landing Page Design</div>
+        <span class="card-tag">UI/UX</span>
+      </div>
+    </div>
+
+    <!-- Card 5 -->
+    <div class="card" data-cat="branding">
+      <div class="card-img">
+        <img src="https://images.unsplash.com/photo-1611532736597-de2d4265fba3?w=600&q=80" alt="Packaging Design" loading="lazy"/>
+        <div class="card-overlay">
+          <div class="overlay-arrow">↗</div>
+          <div class="overlay-title">Premium Packaging</div>
+          <div class="overlay-cat">Branding</div>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="card-cat">Branding</div>
+        <div class="card-title">Premium Packaging & Visual Identity</div>
+        <span class="card-tag">Award Winning</span>
+      </div>
+    </div>
+
+    <!-- Card 6 -->
+    <div class="card" data-cat="social">
+      <div class="card-img">
+        <img src="https://images.unsplash.com/photo-1533750349088-cd871a92f312?w=600&q=80" alt="Influencer Campaign" loading="lazy"/>
+        <div class="card-overlay">
+          <div class="overlay-arrow">↗</div>
+          <div class="overlay-title">Influencer Campaign</div>
+          <div class="overlay-cat">Social Media</div>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="card-cat">Social Media</div>
+        <div class="card-title">Influencer Marketing Campaign — Retail Brand</div>
+        <span class="card-tag">+40% Engagement</span>
+      </div>
+    </div>
+
+    <!-- Card 7 -->
+    <div class="card" data-cat="ads">
+      <div class="card-img">
+        <img src="https://images.unsplash.com/photo-1541701494587-cb58502866ab?w=600&q=80" alt="OOH Billboard" loading="lazy"/>
+        <div class="card-overlay">
+          <div class="overlay-arrow">↗</div>
+          <div class="overlay-title">Outdoor Billboard Campaign</div>
+          <div class="overlay-cat">Ads</div>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="card-cat">Ads</div>
+        <div class="card-title">Out-of-Home Billboard Campaign</div>
+        <span class="card-tag">High Visibility</span>
+      </div>
+    </div>
+
+    <!-- Card 8 -->
+    <div class="card" data-cat="design">
+      <div class="card-img">
+        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&q=80" alt="Annual Report" loading="lazy"/>
+        <div class="card-overlay">
+          <div class="overlay-arrow">↗</div>
+          <div class="overlay-title">Corporate Annual Report</div>
+          <div class="overlay-cat">Design</div>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="card-cat">Design</div>
+        <div class="card-title">Corporate Annual Report Design</div>
+        <span class="card-tag">Print & Digital</span>
+      </div>
+    </div>
+
+    <!-- Card 9 -->
+    <div class="card" data-cat="social">
+      <div class="card-img">
+        <img src="https://images.unsplash.com/photo-1432888498266-38ffec3eaf0a?w=600&q=80" alt="Email Campaign" loading="lazy"/>
+        <div class="card-overlay">
+          <div class="overlay-arrow">↗</div>
+          <div class="overlay-title">Email Marketing Suite</div>
+          <div class="overlay-cat">Social Media</div>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="card-cat">Social Media</div>
+        <div class="card-title">Email Marketing & Newsletter Suite</div>
+        <span class="card-tag">48% Open Rate</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══════════ FEATURED PROJECT ═══════════ -->
+<section class="featured-section">
+  <div class="featured-inner">
+    <div class="featured-img">
+      <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=85" alt="Featured Project"/>
+      <span class="feat-badge">⭐ Featured Project</span>
+    </div>
+    <div class="featured-content">
+      <div class="sec-label">Case Study</div>
+      <h2>Feroze 1888 — National Brand Relaunch</h2>
+      <p>A comprehensive 360° brand relaunch campaign covering digital, print, out-of-home, and influencer touchpoints. We redefined the brand's visual language while doubling consumer recall in key markets.</p>
+      <div class="stats-row">
+        <div class="stat">
+          <div class="stat-num">40%</div>
+          <div class="stat-lbl">Engagement Up</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">2.8M</div>
+          <div class="stat-lbl">Reach</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">6wks</div>
+          <div class="stat-lbl">Campaign</div>
+        </div>
+      </div>
+      <a href="#" class="btn-primary">View Case Study</a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ CTA ═══════════ -->
+<section class="cta-section">
+  <div class="cta-box">
+    <h2>Want Results Like These?</h2>
+    <p>Let's build something remarkable together. From concept to campaign — we craft ideas that move people and grow businesses.</p>
+    <a href="#" class="btn-primary btn-pulse">Start Your Project →</a>
+  </div>
+</section>
+
+<!-- ═══════════ FOOTER ═══════════ -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <a href="index.html" class="footer-logo"><img src="./mnhadvertisinglogo - Copy (2).png" alt="MNH Advertising logo"></a>
+      <h3>MNH <span>Advertising</span></h3>
+      <div class="tagline">Renovating Thoughts.</div>
+      <p>A creative force dedicated to building brands that resonate, campaigns that convert, and stories that last.</p>
+      <div class="socials">
+        <a href="#" class="social-btn s-fb">f</a>
+        <a href="#" class="social-btn s-ig">◈</a>
+        <a href="#" class="social-btn s-tw">✕</a>
+        <a href="#" class="social-btn s-li">in</a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Navigation</h4>
+      <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="#">About</a></li>
+        <li><a href="#">Services</a></li>
+        <li><a href="#portfolio">Portfolio</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Services</h4>
+      <ul>
+        <li><a href="#">Brand Strategy</a></li>
+        <li><a href="#">Social Media</a></li>
+        <li><a href="#">Digital Ads</a></li>
+        <li><a href="#">Print & OOH</a></li>
+        <li><a href="#">Content Creation</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <div class="contact-item">
+        <div class="contact-icon">📍</div>
+        <div class="contact-text">Karachi, Pakistan</div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-icon">📧</div>
+        <div class="contact-text">mnhadvertising@gmail.com</div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-icon">📞</div>
+        <div class="contact-text">0300 9283719</div>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2024 <span>MNH Advertising</span>. All rights reserved.</p>
+    <p>Crafted with ❤️ by <span>MNH Creative Team</span></p>
+  </div>
+</footer>
+
+<script>
+  /* Hamburger */
+  function toggleMenu(){
+    document.getElementById('navLinks').classList.toggle('open');
+  }
+
+  /* Scroll-reveal cards */
+  const cards = document.querySelectorAll('.card');
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach((entry,i)=>{
+      if(entry.isIntersecting){
+        setTimeout(()=> entry.target.classList.add('visible'), i*90);
+        io.unobserve(entry.target);
+      }
+    });
+  },{ threshold: 0.12 });
+  cards.forEach(c => io.observe(c));
+
+  /* Filter */
+  const filterBtns = document.querySelectorAll('.filter-btn');
+  filterBtns.forEach(btn=>{
+    btn.addEventListener('click',()=>{
+      filterBtns.forEach(b=>b.classList.remove('active'));
+      btn.classList.add('active');
+      const f = btn.dataset.filter;
+      cards.forEach(c=>{
+        if(f==='all' || c.dataset.cat===f){
+          c.classList.remove('hidden');
+        } else {
+          c.classList.add('hidden');
+        }
+      });
+    });
+  });
+
+  /* Sticky nav shadow boost on scroll */
+  window.addEventListener('scroll',()=>{
+    document.getElementById('navbar').style.boxShadow =
+      window.scrollY > 10 ? '0 4px 30px rgba(0,0,0,.13)' : '0 2px 20px rgba(0,0,0,.08)';
+  });
+</script>
+</body>
+</html>
